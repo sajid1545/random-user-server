@@ -10,10 +10,12 @@ const getRandomUser = (req, res) => {
 };
 
 const getAllUsers = (req, res) => {
+	const limit = Number(req.query.limit) || 10;
 	fs.readFile('user.json', (err, data) => {
 		if (err) return res.status(500).send({ success: false, message: err });
 		const userData = JSON.parse(data);
-		res.status(200).send({ message: 'success', data: userData });
+		const limitedData = userData.slice(0, limit);
+		res.status(200).send({ message: 'success', data: limitedData });
 	});
 };
 
