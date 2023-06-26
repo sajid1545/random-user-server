@@ -41,8 +41,8 @@
 	},
 	{
 		"id": "6",
-		"gender": "female",
-		"name": "rachel",
+		"gender": "Female",
+		"name": "RACHEL",
 		"contact": "124-124-1234",
 		"address": "46 Monument Trail",
 		"photoURL": "http://dummyimage.com/135x100.png/cc0000/ffffff"
