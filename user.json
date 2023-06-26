@@ -40,7 +40,7 @@
 		"photoURL": "http://dummyimage.com/152x100.png/cc0000/ffffff"
 	},
 	{
-		"id": 6,
+		"id": "6",
 		"gender": "female",
 		"name": "rachel",
 		"contact": "124-124-1234",

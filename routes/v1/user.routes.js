@@ -5,5 +5,6 @@ const router = express.Router();
 router.get('/all', userController.getAllUsers);
 router.get('/random', userController.getRandomUser);
 router.post('/save', userController.addUser);
+router.patch('/update', userController.updateSingleUser);
 
 module.exports = router;
