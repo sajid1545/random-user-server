@@ -86,6 +86,63 @@ const updateSingleUser = (req, res) => {
 	});
 };
 
+const updateBulkUsers = (req, res) => {
+	const { ids } = req.body;
+
+	fs.readFile('user.json', (err, data) => {
+		if (err) return res.status(500).send({ success: false, message: err });
+
+		const userData = JSON.parse(data);
+
+		const { bodyData } = req.body;
+
+		// const bulkUpdate = ids.map((i) => {
+		// });
+		const updatedData = bodyData.map((user) => {
+			// validation
+			if (!user.id) return res.status(400).send({ success: false, message: 'id is required' });
+			if (!user.gender)
+				return res.status(400).send({ success: false, message: 'gender is required' });
+			if (!user.name) return res.status(400).send({ success: false, message: 'name is required' });
+			if (!user.contact)
+				return res.status(400).send({ success: false, message: 'contact is required' });
+			if (!user.address)
+				return res.status(400).send({ success: false, message: 'address is required' });
+			if (!user.photoURL)
+				return res.status(400).send({ success: false, message: 'photoURL is required' });
+			const updatedDoc = {
+				id: user.id,
+				gender: user.gender,
+				name: user.name,
+				contact: user.contact,
+				address: user.address,
+				photoURL: user.photoURL,
+			};
+
+			// const output = userData.filter((user) => user.id !== i.id);
+			// const newData = [...output, updatedDoc];
+
+			// fs.writeFile('user.json', JSON.stringify(newData), (err) => {
+			// 	if (err) return res.status(500).send({ success: false, message: err });
+			// 	res.status(200).send({ message: 'success', message: 'Updated Successfully' });
+			// });
+			// console.log('output-', output);
+			// console.log('updatedDoc-', updatedDoc);
+			return updatedDoc;
+		});
+
+		const updateBulk = ids.map((i) => {
+			const output = userData.filter((user) => user.id !== i.id);
+			const newData = [...output, ...updatedData];
+
+			fs.writeFile('user.json', JSON.stringify(newData), (err) => {
+				if (err) return res.status(500).send({ success: false, message: err });
+				res.status(200).send({ message: 'success', message: 'Updated Successfully' });
+			});
+		});
+	});
+};
+
 const deleteUser = (req, res) => {
 	const { id } = req.params;
 	if (isNaN(id)) return res.status(400).send({ success: false, message: 'id must be a number' });
@@ -113,4 +170,5 @@ module.exports = {
 	addUser,
 	updateSingleUser,
 	deleteUser,
+	updateBulkUsers,
 };
