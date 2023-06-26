@@ -38,5 +38,13 @@
 		"contact": "606-873-2651",
 		"address": "Apt 1695",
 		"photoURL": "http://dummyimage.com/152x100.png/cc0000/ffffff"
+	},
+	{
+		"id": 6,
+		"gender": "female",
+		"name": "rachel",
+		"contact": "124-124-1234",
+		"address": "46 Monument Trail",
+		"photoURL": "http://dummyimage.com/135x100.png/cc0000/ffffff"
 	}
 ]
